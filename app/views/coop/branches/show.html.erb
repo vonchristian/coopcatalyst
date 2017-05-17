@@ -1,0 +1,17 @@
+Employees
+Transactions
+Loans Released
+Savings
+Time Deposit
+Share Capital
+Departments
+
+<%=current_branch %>
+<%=current_department %>
+
+
+<%=link_to "New Department", new_coop_branch_department_path(@branch), class: "btn btn-primary" %>
+
+<% current_branch.departments.each do |department| %>
+  <%=link_to department.name, coop_department_path(department) %>
+<% end %>

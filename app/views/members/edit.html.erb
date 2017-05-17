@@ -1,0 +1,47 @@
+<div class="container">
+<div class="box box-solid">
+<div class="box-header with-border">
+<h4>Member Details</h4>
+      </div>
+      <div class="box-body">
+       <%= simple_form_for @member, html: { multipart: true }, url: :member do |f| %>
+      <%=f.error_notification %>
+<div class="col-md-6">
+</div>
+<div class="col-md-5">
+      <%if @member.avatar.blank? %>
+        <%=image_tag("default.png", :class=>"img-circle center-block ") %>
+        <br>
+        <% else %>
+        <center><%= image_tag @member.avatar.url(:medium) %></center>
+        <% end %>
+       <center><%= f.input :avatar, as: :file %></center>
+<br>
+<h4 class="text-uppercase">Personal Details </h4>
+<hr>
+
+        <%=f.input :first_name, autofocus: true, placeholder: "First Name" %>
+
+        <%=f.input :middle_name, placeholder: "Middle Name"  %>
+
+        <%=f.input :last_name, placeholder: "Last Name"  %>
+
+        <%=f.input :contact_number, placeholder: "Contact Number" %>
+
+        <%=f.input :email, placeholder: "Email"  %>
+
+        <%=f.input :sex, collection: Member.sexes.keys.to_a.map{|a| [a.titleize, a]}, as: :radio_buttons %>
+
+         <%=f.input :civil_status, collection: Member.civil_statuses.keys.to_a.map{|a| [a.titleize, a]}, as: :radio_buttons %>
+
+         <%=f.input :date_of_birth, as: :string, input_html:{class: "datepicker" } %>
+
+
+        <div class="modal-footer">
+          <%=f.submit 'Save Member', class: 'btn btn-primary', data: { disable_with: "Saving Member..."} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

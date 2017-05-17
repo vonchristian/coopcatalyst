@@ -1,0 +1,13 @@
+<%=link_to "New Branch", new_coop_cooperative_branch_path(@cooperative), class: "btn btn-flat btn-warning"%>
+<%= link_to "New Program", new_coop_program_path, class: "btn btn-primary btn-flat" %>
+
+<% @cooperative.branches.each do |branch| %>
+  <%= link_to branch.name, coop_branch_path(branch) %>
+  <%= branch.address %>
+  <%= branch.contact_number %>
+<% end %>
+
+<p class="text-muted"> Programs </p>
+<% @cooperative.programs.each do |program| %>
+  <%=program.name %>
+<% end %>

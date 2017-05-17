@@ -1,0 +1,41 @@
+<li class="header">GENERAL</li>
+<li class="<%='active' if current_page?(loans_section_root_path)%>">
+  <a href="/">
+      <i class="icon-speedometer"></i><span> &nbsp; Dashboard </span>
+  </a>
+</li>
+<li class="<%='active' if current_page?(loans_section_loans_path)%>">
+  <a href="/loans_section/loans">
+      <i class="icon-credit-card"></i><span> &nbsp; Loans</span>
+  </a>
+</li>
+<li>
+  <a href="/members">
+    <i class="icon-people"></i> <span> &nbsp; Members</span>
+  </a>
+</li>
+<li class="header">ACCOUNTING</li>
+<li>
+  <a href="/members">
+    <i class="fa fa-mail-reply"></i> <span>  Disbursement</span>
+  </a>
+</li>
+<li>
+  <a href="/loans_section/imbursements">
+    <i class="fa fa-mail-forward"></i> <span>  Imbursement</span>
+  </a>
+</li>
+<li class="header">REPORTS </li>
+
+  <li>
+    <a href="/loans_section/transactions">
+      <i class="fa fa-file-text-o"></i> <span>Executive Summary</span>
+    </a>
+  </li>
+  <li>
+
+    <a href="/loans_section/transactions">
+      <i class="fa fa-pie-chart"></i> <span>Loan Overview</span>
+    </a>
+  </li>
+  <li class="header">SETTINGS </li>

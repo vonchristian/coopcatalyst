@@ -1,0 +1,12 @@
+<%=simple_form_for @supplier do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :contact_number %>
+  <%= f.simple_fields_for :business do |ff| %>
+    <%= ff.input :name %>
+    <%= ff.input :contact_number %>
+    <%= ff.input :address %>
+  <% end %>
+  <%=f.submit "Save Supplier", class: "btn btn-flat btn-primary" %>
+<% end %>

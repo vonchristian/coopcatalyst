@@ -1,0 +1,32 @@
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-solid">
+      <div class="box-header">
+        <h4 class="title"> Deposit Details </h4>
+      </div>
+      <div class="box-body">
+
+    <%= simple_form_for @entry, url: :saving_withdrawals do |f| %>
+    <%= f.error_notification %>
+        <%=f.input :entry_date, as: :string, input_html: { class: "datepicker" } %>
+
+<%=f.input :reference_number %>
+
+          <%=f.input :description %>
+
+    <%=f.simple_fields_for :debit_amounts do |ff| %>
+    <%=ff.input :amount %>
+    <%=ff.input :account_id, collection: Accounting::Account.all.map{|a| [a.name, a.id]} %>
+    <% end %>
+    <%=f.simple_fields_for :credit_amounts do |ff| %>
+    <%=ff.input :amount%>
+    <%=ff.input :account_id, collection: Accounting::Account.all.map{|a| [a.name, a.id]} %>
+    <% end %>
+    <div class="modal-footer">
+      <%= f.submit 'Withdraw', class: "btn btn-primary", data: {disable_with: "Withdrawing..."} %>
+    </div>
+  <% end %>
+  </div>
+</div>

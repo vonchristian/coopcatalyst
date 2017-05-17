@@ -1,0 +1,38 @@
+<li class="header">CONSUMERS</li>
+<li class="<%='active' if current_page?(consumers_section_store_index_path)%>">
+  <a href="/">
+      <i class="icon-home"></i><span> &nbsp; Store </span>
+  </a>
+</li>
+<li>
+    <a href="/members">
+      <i class="icon-people"></i>  &nbsp; <span> Members </span>
+    </a>
+  </li>
+<li class="<%='active' if current_page?(consumers_section_products_path)%>">
+  <a href="/consumers_section/products">
+      <i class="icon-grid"></i><span> &nbsp; Products</span>
+  </a>
+</li>
+
+<li class="<%='active' if current_page?(consumers_section_stocks_path)%>">
+  <a href="/consumers_section/stocks">
+      <i class="icon-layers"></i><span> &nbsp; Stocks</span>
+  </a>
+</li>
+
+<li class="<%='active' if current_page?(consumers_section_orders_path)%>">
+  <a href="/consumers_section/orders">
+      <i class="icon-basket-loaded"></i><span> &nbsp; Sales </span>
+  </a>
+</li>
+<li>
+    <a href="/suppliers">
+      <i class="fa fa-male"></i> <span>Suppliers</span>
+    </a>
+  </li>
+  <li>
+    <a href="/reports">
+      <i class="fa fa-file-text-o"></i> <span>Reports</span>
+    </a>
+  </li>

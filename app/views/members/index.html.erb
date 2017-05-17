@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-solid">
+      <div class="box-header with-border">
+        <h4 class="text-muted"> <%=current_branch.members.count %> Members
+          <span class="pull-right">
+            <% if policy(Member.new).new? %>
+              <%=link_to new_member_path do %>
+                <span class="btn btn-primary"><i class="fa fa-user-plus"></i> New Member </span>
+              <% end %>
+            <% end %>
+          </span>
+        </h4>
+      </div>
+      <div class="box-body">
+        <div class="table table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th> Member </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @members.each do |member| %>
+                <tr>
+                  <td><%=link_to image_tag(member.avatar.url(:thumb), class: "img-circle"), member%> &nbsp; &nbsp; <%=link_to member.first_and_last_name, member %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

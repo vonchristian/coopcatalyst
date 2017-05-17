@@ -1,0 +1,62 @@
+<div class="tab-pane" id="purchases">
+  <p class="text-muted"> PURCHASES OVERVIEW </p>
+  <div class="row">
+
+      <div class="col-md-3">
+        <small class="text-danger">
+          CREDIT
+        </small>
+      </div>
+      <div class="col-md-2">
+        <small class="text-muted">
+          PAYMENTS
+        </small>
+      </div>
+      <div class="col-md-2">
+        <small class="text-muted">
+          BALANCE
+        </small>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <p class="text-muted"> PURCHASES INSIGHTS </p>
+    <div class="row">
+      <div class="col-md-4">
+    <small class="text-muted"> Products Mostly Purchased </small>
+      1. Pampers 10 times
+    </div>
+    <div class="col-md-4">
+        <small class="text-muted">
+          TOTAL PURCHASE
+        </small><br>
+        <h3 class="text-muted"> <%=number_to_currency 899 %> </h3>
+
+      </div>
+    </div>
+    <br>
+    <hr>
+    <p class="text-muted"> TRANSACTIONS HISTORY </p>
+  <table class="table table-striped">
+    <thead>
+      <tr class="text-muted">
+        <th>Date </th>
+        <th> Reference No. </th>
+        <th> Discount </th>
+        <th> Total Cost </th>
+        <th> Pay Type </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @member.orders.each do |order| %>
+      <tr>
+        <td><%= order.order_date.strftime("%b %e, %Y") %></td>
+        <td><%= order.reference_number %></td>
+        <td><%= number_to_currency order.total_discount %> </td>
+        <td><%= number_to_currency order.total_cost %></td>
+        <td> <span class="label label-<%=order.pay_type_color%>"><%= order.pay_type.try(:titleize) %></span></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

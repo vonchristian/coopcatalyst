@@ -1,0 +1,26 @@
+<div class="tab-pane" id="share-capital">
+  <% if ShareCapitals::Common.for(@member).blank? %>
+    <%=link_to "Subscribe (Common)", new_member_common_share_capital_path(@member), class: "btn btn-primary btn-flat" %>
+  <% else %>
+  <div class="row">
+    <div class="col-md-3">
+      <h4 class="text-muted"> Share Capital (Common) </h4>
+      Account Number: <%= @member.common_share_capital_account_number %>
+    </div>
+    <div class="col-md-3">
+      <%=number_to_currency @member.common_share_capital.balance %> <br>
+      <small> BALANCE </small>
+    </div>
+    <div class="col-md-3">
+      <%= link_to "New Capital Build Up", new_share_capital_capital_build_up_path(@member.common_share_capital), class: "btn btn-default btn-sm btn-flat" %>
+    </div>
+  </div>
+  <% end %>
+  <hr>
+  <% if ShareCapitals::Preferred.for(@member).blank? %>
+  <%=link_to "Subscribe (Preferred)", new_member_preferred_share_capital_path(@member), class: "btn btn-primary btn-flat" %>
+  <% else %>
+    <h4 class="text-muted"> Share Capital (Preferred) </h4>
+    Account Number: <%= @member.preferred_share_capital_account_number %>
+  <% end %>
+</div>

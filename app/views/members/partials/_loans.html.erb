@@ -1,0 +1,23 @@
+<div class="tab-pane" id="loans">
+  <%= link_to "New Loan", new_member_loan_path(@member), class: "btn btn-primary btn-flat" %>
+  <hr />
+  <% @member.loans.each do |loan| %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= link_to loan.loan_product_name, loans_section_loan_path(loan) %>
+      </div>
+      <div class="col-md-3">
+        <%=number_to_currency loan.amount %>
+      </div>
+      <div class="col-md-3">
+        <%=loan.application_date.strftime("%B %e, %Y") %>
+      </div>
+      <div class="col-md-3">
+
+      </div>
+    </div>
+    <hr>
+  <% end %>
+
+
+</div>

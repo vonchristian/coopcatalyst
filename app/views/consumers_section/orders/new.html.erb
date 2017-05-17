@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title"> Order Details </h3>
+      </div>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-5">
+            <%=simple_form_for @order, url: :consumers_section_orders do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :order_date, as: :string, input_html: { class: "datepicker" } %>
+            <%= f.input :reference_number %>
+            <%= f.input :member_id, collection: Member.all.map { |a| [a.full_name, a.id] } %>
+            <%= f.input :pay_type, collection: ConsumersSection::Order.pay_types.keys.to_a.map{ |a| [a.titleize, a] } %>
+            <%= f.submit "Save Order", class: "btn btn-primary btn-flat" %>
+
+
+            <% end %>
+          </div>
+          <div class="col-md-5 col-md-offset-1">
+            <p class="text-muted"> Items </p>
+            <%=render @cart.line_items %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

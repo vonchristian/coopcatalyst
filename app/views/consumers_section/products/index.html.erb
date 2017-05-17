@@ -1,0 +1,40 @@
+<%= link_to "New Product", new_consumers_section_product_path, class: "btn btn-primary btn-flat" %>
+<div class="row">
+  <div class="col-md-7">
+    <div class="box box-solid">
+      <div class="box-header">
+        <div class="row">
+          <div class="col-md-2">
+            <h3 class="box-title"> Products </h3>
+          </div>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="table table-responsive">
+          <table class="table table-striped">
+            <tbody>
+              <% @products.each do |product| %>
+                <tr>
+                  <td>
+                    <div class="row">
+                      <div class="col-md-2 col-sm-3 col-xs-3">
+                        <%=link_to(image_tag(product.photo.url(:large), class: "img-square", height: 90, width: 90), consumers_section_product_path(product)) %>
+                      </div>
+                      <div class="col-md-10 col-sm-8 col-sm-8">
+                        <strong><%= product.name %></strong><i class="icon-options-vertical pull-right"></i><br>
+                        <small class="text-muted"> <%= product.description %></small><br><br>
+                        <span class="text-muted"> <i class="fa icon-layers"></i> <%=product.deliveries_with_unit %> &nbsp; &nbsp;  <i class="icon-basket-loaded text-success"></i><%=product.deliveries_with_unit %> &nbsp; &nbsp;  <i class="icon-basket text-danger"></i> <%=product.deliveries_with_unit %>  </span><br>
+                        <p class="text-muted"><%= product.product_category_name %></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

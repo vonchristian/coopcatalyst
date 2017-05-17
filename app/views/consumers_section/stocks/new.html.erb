@@ -1,0 +1,20 @@
+<%=simple_form_for @stock, url: :consumers_section_stocks do |f| %>
+  <%= f.error_notification %>
+  <%=f.input :product_id, collection: ConsumersSection::Product.all.map{|a| [a.name, a.id] } %>
+  <%= f.input :date_purchased, as: :string, input_html: { class: "datepicker" } %>
+  <%= f.input :expiry_date, as: :string, input_html: { class: "datepicker" } %>
+  <%= f.input :quantity %>
+  <%= f.input :purchase_cost %>
+  <%= f.input :has_freight %>
+  <%= f.input :discounted %>
+  <%= f.simple_fields_for :discount do |d| %>
+    <%= d.input :discount_type, collection: Discount.discount_types.keys.to_a.map {|a| [a.titleize, a]}, as: :radio_buttons %>
+    <%= d.input :amount %>
+    <%= d.input :percent %>
+  <% end %>
+  <%= f.simple_fields_for :freight_in do |ff| %>
+    <%=ff.input :amount %>
+  <% end %>
+  <%= f.input :supplier_id, collection: Supplier.all.map { |a| [a.full_name, a.id]} %>
+  <%= f.submit "Save Stock", class: "btn btn-primary btn-flat" %>
+<% end %>

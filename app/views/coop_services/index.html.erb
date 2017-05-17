@@ -1,0 +1,10 @@
+<% if CoopServices::ShareCapitalProduct.blank? %>
+  <%= link_to "Configure Share Capital Product", new_coop_services_share_capital_product_path, class: "btn btn-danger btn-flat" %>
+<% else %>
+  Minimum Paid up Share Capital: <%=number_to_currency CoopServices::ShareCapitalProduct.last.try(:minimum_paid_up_share_capital) %>
+<% end %>
+
+
+<%= link_to "New Savings Product", new_coop_services_savings_product_path, class: "btn btn-danger btn-flat" %>
+<%= link_to "New Time Deposit Product", new_coop_services_time_deposit_product_path, class: "btn btn-danger btn-flat" %>
+<%= link_to "New Loan Product", new_coop_services_loan_product_path, class: "btn btn-danger btn-flat" %>

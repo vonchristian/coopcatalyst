@@ -1,0 +1,64 @@
+<div class="active tab-pane" id="overview">
+  Overview
+  <%=link_to "New Relationship", new_relationship_path, class: "btn btn-primary" %>
+
+
+<p class="text-muted"> Relationships </p>
+<% if @member.active_relationships.present? %>
+<% @member.relations.each do |relation| %>
+  <div class="row">
+    <div class="col-md-2">
+      <%=image_tag(relation.avatar.url(:small), class: "img-circle", width: 35, height: 35) %>
+    </div>
+    <div class="col-md-4">
+      <%=relation.full_name %>
+    </div>
+    <div class="col-md-2">
+      <%=@member.active_relation(relation)%>
+    </div>
+  </div>
+  <br>
+  <% end %>
+  <% end %>
+
+  <% if @member.passive_relationships.present? %>
+  <% @member.relationers.each do |relation| %>
+    <div class="row">
+      <div class="col-md-2">
+        <%=image_tag(relation.avatar.url(:small), class: "img-circle", width: 35, height: 35) %>
+      </div>
+      <div class="col-md-4">
+        <%=relation.full_name %>
+      </div>
+      <div class="col-md-2">
+        <%=@member.passive_relation(relation)%>
+      </div>
+    </div>
+    <br>
+    <% end %>
+    <% end %>
+<hr>
+  <% Member.possible_relationship(@member).each do |member| %>
+    <div class="row">
+      <div class="col-md-2">
+        <%=image_tag(member.avatar.url(:small), class: "img-circle", width: 35, height: 35) %>
+      </div>
+      <div class="col-md-4">
+        <%=member.full_name %>
+      </div>
+      <div class="col-md-2">
+    <%=simple_form_for [@member, Members::Relationship.new], url: :relationships do |f| %>
+      <%=f.input :relationer_id, input_html: { value: member.id }, as: :hidden  %>
+      <%= f.input :relationee_id, input_html: { value: @member.id }, as: :hidden %>
+      <%=f.input :relationship_type, collection: Members::Relationship.relationship_types.keys.to_a.map{ |a| [a.titleize, a] } %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit "Add", class: "btn btn-primary btn-flat btn-sm" %>
+    </div>
+  </div>
+    <% end %>
+  <% end %>
+  <h4 class="text-muted">Membership Details </h4>
+  <p class="text-muted"> Membership Fee </p>
+    <%=link_to "New Membership Fee", new_member_membership_fee_path(@member), class: "btn btn-primary btn-sm btn-flat" %>
+</div>

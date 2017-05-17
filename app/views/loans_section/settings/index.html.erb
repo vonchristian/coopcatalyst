@@ -1,0 +1,8 @@
+<%= link_to "New Loan Product", new_loans_section_loan_product_path, class: "btn btn-primary btn-flat" %>
+<%= link_to "Set Loan Approver", new_loans_section_loan_approver_path, class: "btn btn-primary btn-flat" %>
+
+
+<% @loan_approvers.each do |loan_approver| %>
+  <%=loan_approver.full_name %>
+  <%= loan_approver.role.try(:titleize) %>
+<% end %>

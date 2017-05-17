@@ -1,0 +1,27 @@
+<div class="tab-pane" id="time-deposits">
+  <h4 class="text-muted"> Time Deposits
+  <span class="pull-right">
+    <%=link_to "New Time Deposit", new_member_time_deposit_path(@member), class: "btn btn-primary btn-flat" %>
+  </span>
+    <hr>
+</h4>
+
+  <% @member.time_deposits.each do |time_deposit| %>
+    <div class="row">
+      <div class="col-md-3">
+        <%=time_deposit.time_deposit_product_name %>
+      </div>
+      <div class="col-md-3">
+        <%= time_deposit.account_number %>
+      </div>
+      <div class="col-md-3">
+        <%= number_to_currency time_deposit.balance %><br>
+        <small> BALANCE </small>
+      </div>
+      <div class="col-md-3">
+        <%=link_to "Deposit", new_time_deposit_deposit_path(time_deposit), class: "btn btn-default btn-sm btn-flat" %>
+      </div>
+    </div>
+    <br>
+  <% end %>
+</div>

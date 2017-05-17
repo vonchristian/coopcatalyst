@@ -1,0 +1,131 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-solid">
+      <div class="box-header">
+
+      </div>
+      <div class="box-body">
+        <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+          <div class="col-md-2">
+            <%=image_tag(@loan.member.avatar.url(:medium), class: "img-square") %>
+
+          </div>
+          <div class="col-md-8">
+            <h4 class="text-muted"><%= @loan.member_full_name.try(:upcase) %></h4>
+            <p class="text-muted"> <%=@loan.loan_product.interest_rate %> %
+          </div>
+          <div class="col-md-2">
+            <span class="text-muted pull-right">
+              <small class="text-muted">REF NO:</small> <br/>
+               <%=@loan.tracking_number %></span>
+          </div>
+        </div>
+        <br>
+      <br>
+        <div class="row">
+          <div class="col-md-12">
+            <%= @loan.approved? %>
+            <%= @loan.disbursed? %>
+
+            <% if !@loan.approved? && !@loan.disbursed? %>
+            <%=link_to "Approve", new_loans_section_loan_approval_path(@loan), class: "btn btn-primary btn-flat btn-sm" %>
+            <% end %>
+            <% if !@loan.disbursed? && @loan.approved? %>
+            <%=link_to "Disburse", new_loans_section_loan_disbursement_path(@loan), class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-md-5">
+            <h4 class="text-muted"> Loan Details </h4>
+
+                    <ul class="list-group list-group-unbordered">
+                      <li class="list-group-item">
+                        <b>Type </b> <a class="pull-right"><%= @loan.loan_product_name %></a>
+                      </li>
+                      <li class="list-group-item">
+                        <b>Term </b> <a class="pull-right"></a>
+                      </li>
+                      <li class="list-group-item">
+                        <b>Interest Rate</b> <a class="pull-right"></a>
+                      </li>
+                    </ul>
+          </div>
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-3">
+            <p class="text-muted"> Approved By: </p>
+            <% @loan.loan_approvers.each do |approver| %>
+              <%=image_tag(approver.avatar.url(:small), class: "img-circle", width: 35, height: 35) %>
+              <% end %>
+              <br />
+              <br />
+            <p class="text-muted"> Disbursed By: </p>
+
+          </div>
+        </div>
+          <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <small> LOAN AMOUNT </small>
+            <h3 class="text-muted"><%=number_to_currency @loan.amount %></h2>
+
+          </div>
+
+          <div class="col-md-3">
+            <small> PAYMENTS </small>
+            <h3 class="text-muted"><%=number_to_currency @loan.payments.total %></h2>
+          </div>
+          <div class="col-md-3">
+            <small> BALANCE </small>
+            <h3 class="text-muted"><%=number_to_currency @loan.balance %></h2>
+          </div>
+          <div class="col-md-3">
+            <br>
+            <div class="progress progress-xs">
+            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                  <span class="sr-only">60% Complete (warning)</span>
+
+                </div>
+              </div>
+              <small class="text-muted"> Remaining term: </small>
+          </div>
+        </div>
+
+
+    <hr>
+    <small class="text-muted"> Projected savings if paid earlier </small>
+    <h4 class="text-muted"> Transactions History
+      <% if @loan.disbursed? %>
+      <span class="pull-right"><%=link_to "New Payment", new_loans_section_loan_payment_path(@loan), class: "btn btn-primary btn-flat" %></span>
+      <% end %>
+       </h4>
+
+    <hr />
+    <div class="table table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr class="text-muted">
+            <th> Date </th>
+            <th> Reference No. </th>
+            <th> Description </th>
+            <th> Amount </th>
+            <th> Employee </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @loan.payments.each do |payment| %>
+            <tr>
+              <td> <%=payment.entry_date.strftime("%B %e, %Y") %></td>
+              <td><%=payment.reference_number %></td>
+              <td><%= payment.description %></td>
+              <td> <%=number_to_currency payment.credit_amounts.sum(:amount) %></td>
+              <td><%=image_tag(payment.recorder.avatar.url(:small), class: "img-circle", height: 35, width: 35) %> <%= payment.recorder_full_name %> </td>
+              <td><i class="icon-options text-muted"></i></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>

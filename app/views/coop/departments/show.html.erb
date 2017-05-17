@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-solid">
+      <div class="box-header">
+        <h3 class="box-title"> <%=@department.branch_name %> &nbsp; <i class="fa fa-angle-right"></i> &nbsp; <%=@department.name %> </h3>
+        <br />
+        <br />
+        <% @department.users.each do |user| %>
+          <%=image_tag(user.avatar.url(:small), class: "img-circle", width: 35, height: 35) %>
+        <% end %>

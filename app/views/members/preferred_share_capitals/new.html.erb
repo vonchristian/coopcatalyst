@@ -1,0 +1,21 @@
+<div class="container">
+<div class="box box-solid">
+<div class="box-header with-border">
+<h4>Preferred Share Capital Details</h4>
+      </div>
+      <div class="box-body">
+       <%= simple_form_for [@member, @share_capital], url: :member_preferred_share_capitals  do |f| %>
+      <%=f.error_notification %>
+<div class="col-md-6">
+</div>
+<div class="col-md-5">
+      <%= f.input :account_number %>
+
+      <div class="modal-footer">
+          <%=f.submit 'Save', class: 'btn btn-primary', data: { disable_with: "Saving..."} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

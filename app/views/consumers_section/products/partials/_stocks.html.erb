@@ -1,0 +1,36 @@
+<div class="tab-pane" id="stocks">
+  <div class="col-md-12">
+    <span class="pull-right">
+      <%=link_to "New Stock", new_consumers_section_product_stock_path(@product), class: "btn btn-primary btn-flat" %>
+    </span>
+  </div>
+  <hr />
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date </th>
+        <th> QTY </th>
+        <th> Unit </th>
+        <th><span class="pull-right"> Cost </span>  </th>
+        <th> Discount </th>
+        <th> Freight In </th>
+        <th><span class="pull-right"> Total Cost </span> </th>
+        <th> Employee </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @product.stocks.each do |stock| %>
+      <tr>
+        <td><%= stock.date_purchased.strftime("%b %e, %Y") %></td>
+        <td><%=stock.quantity %></td>
+        <td><%=stock.unit %> </td>
+        <td><span class="pull-right">  <%=number_to_currency stock.purchase_cost %> </span></td>
+          <td><span class="pull-right">  <%=number_to_currency stock.total_discount%> </span></td>
+        <td><span class="pull-right"><%= number_to_currency stock.total_freight_in %></span></td>
+        <td><span class="pull-right"><%= number_to_currency stock.total_cost %></span></td>
+        <td><%= stock.user.try(:full_name) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

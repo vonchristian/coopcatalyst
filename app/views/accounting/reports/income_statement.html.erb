@@ -1,0 +1,29 @@
+<div class="container">
+<div class="box box-solid">
+<div class="box-body">
+  <center>
+    <h1>Income Statement</h1>
+
+    <%= form_tag({:action => 'income_statement'}, {:method => :get, :class => 'form-inline'}) do%>
+      <div class="form-group">
+      <%= label_tag :from_date, nil, class: 'sr-only'%>
+      <%= text_field_tag :from_date, @from_date, :class => 'datepicker form-control', :placeholder => "Date" %>
+      </div>
+      <div class="form-group">
+      <%= label_tag :to_date, nil, class: 'sr-only'%>
+      <%= text_field_tag :to_date, @to_date, :class => 'datepicker form-control', :placeholder => "Date" %>
+      </div>
+      <button type="submit" class="btn btn-default">Get Report</button>
+      <%#=link_to "Print Report (PDF)", accounting_department_reports_income_statement_path(format: 'pdf', from_date: @from_date, to_date: @to_date), class: "btn btn-info"%>
+    <% end %>
+  </center>
+
+  <br>
+
+  <%= render 'account', :name => "Revenues", :accounts => @revenues %>
+  <%= render 'account', :name => "Expenses", :accounts => @expenses %>
+<hr>
+<h4>Net Income: <span class="pull-right"><%=number_to_currency (@revenues.balance(from_date: @from_date, to_date: @to_date ) - @expenses.balance(from_date: @from_date, to_date: @to_date )) %></h4>
+</div>
+</div>
+</div>

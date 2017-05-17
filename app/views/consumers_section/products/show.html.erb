@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-md-3">
+
+    <!-- Profile Image -->
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <%= image_tag(@product.photo.url(:thumb), class: "profile-user-img img-responsive img-square") %>
+
+        <h3 class="profile-username text-center"><%= @product.name %></h3>
+
+        <p class="text-muted text-center"><%= @product.description %></p>
+
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>Deliveries </b> <a class="pull-right"><%= @product.deliveries %></a>
+          </li>
+          <li class="list-group-item">
+            <b>Sold </b> <a class="pull-right"> <%= @product.sold %></a>
+          </li>
+          <li class="list-group-item">
+            <b>In Stock</b> <a class="pull-right"><%= @product.in_stock %></a>
+          </li>
+        </ul>
+
+        <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+
+    <!-- About Me Box -->
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">About <%#= @product.first_name.try(:titleize) %></h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+
+        <p class="text-muted">
+          B.S. in Computer Science from the University of Tennessee at Knoxville
+        </p>
+
+        <hr>
+
+        <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+        <p class="text-muted">Malibu, California</p>
+
+        <hr>
+
+        <strong><i class="fa fa- margin-r-5"></i> Gender</strong>
+
+        <p>
+          <p class="text-muted"><%#=@product.sex %></p>
+        </p>
+
+        <hr>
+
+        <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-md-9">
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
+        <li><a href="#stocks" data-toggle="tab">Stocks</a></li>
+        <li><a href="#cash-sales" data-toggle="tab">Cash Sales</a></li>
+        <li><a href="#credit-sales" data-toggle="tab">Credit Sales </a></li>
+        <li><a href="#reports" data-toggle="tab">Reports </a></li>
+        <li><a href="#settings" data-toggle="tab">Settings</a></li>
+      </ul>
+      <div class="tab-content">
+        <%#=render 'overview' %>
+        <%=render "consumers_section/products/partials/stocks" %>
+        <%=render "consumers_section/products/partials/cash_sales" %>
+        <%=render "consumers_section/products/partials/credit_sales" %>
+        <%=render "consumers_section/products/partials/reports" %>
+        <%=render "consumers_section/products/partials/settings" %>
+
+
+        <%#=render "loans" %>
+        <%#=render "settings" %>
+        <!-- /.tab-pane -->
+      </div>
+      <!-- /.tab-content -->
+    </div>
+    <!-- /.nav-tabs-custom -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->

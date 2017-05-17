@@ -1,0 +1,9 @@
+<%=simple_form_for @product, url: :consumers_section_products do |f| %>
+  <%=f.error_notification %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :unit %>
+  <%= f.input :stock_alert %>
+  <%= f.input :product_category_id, collection: ConsumersSection::Products::ProductCategory.all.map{ |a| [a.name, a.id] } %>
+  <%= f.submit "Create Product", class: "btn btn-primary btn-flat" %>
+<% end %>

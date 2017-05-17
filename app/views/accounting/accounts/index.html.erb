@@ -1,0 +1,28 @@
+<div class="col-md-12">
+<div class="box box-solid">
+  <div class="box-body">
+  <center>
+    <h1>General Ledger</h1>
+    <br>
+  </center>
+
+<table class="table table-striped table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Debit Balance</th>
+    <th>Credit Balance</th>
+    <th>Balance</td>
+  </tr>
+
+<% @accounts.each do |account| %>
+  <tr class="<%= cycle("even", "odd") -%>">
+    <td><%=link_to account.name, account %></td>
+    <td><%= account.type.sub('AccountingDepartment::','') %></td>
+    <td><%=number_to_currency account.debits_balance %></td>
+    <td><%=number_to_currency account.credits_balance %></td>
+    <td><%=number_to_currency account.balance.abs %></td>
+  </tr>
+<% end %>
+</table>
+</div>

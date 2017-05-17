@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-solid">
+      <div class="box-header with-border">
+        <div class="row">
+          <div class="col-md-3">
+          <h4 class="title">Stocks</h4>
+        </div>
+          <div class="col-md-6">
+            <%=form_tag consumers_section_stocks_path, method: :get, id: "search-form" do %>
+             <div class="input-group">
+               <%= text_field_tag :name, params[:name], class: "search-query form-control", placeholder: "Search...", type: "search" %>
+               <span class="input-group-btn">
+                 <%= button_tag(type: 'submit', class: "btn btn-flat") do %>
+                   <i class="fa fa-search"></i>
+                 <% end %>
+               </span>
+             </div>
+           <% end %>
+          </div>
+          <div class="col-md-3">
+            <%=link_to 'New Stock', new_consumers_section_stock_path, class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="table table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Date </th>
+                <th> Product </th>
+                <th> Supplier </th>
+                <th><span class='pull-right'> Quantity</span> </th>
+                <th><span class='pull-right'> Unit Cost </span></th>
+                <th><span class='pull-right'> Discount </span></th>
+
+                <th><span class='pull-right'> Freight In </span></th>
+                <th><span class='pull-right'> Total Cost </span></th>
+
+
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @stocks.each do |stock| %>
+                <tr>
+                  <td>
+                    <%= stock.date_purchased.strftime('%B %e, %Y') %>
+                  </td>
+                  <td><%=link_to stock.product.try(:name), consumers_section_stock_path(stock) %></td>
+                  <td>
+                    <%= stock.supplier_business_name %>
+
+                  </td>
+                  <td><span class='pull-right'> <%= stock.quantity.round %></span></td>
+                  <td><span class='pull-right'> <%= number_to_currency stock.purchase_cost %></span></td>
+                  <td><span class='pull-right'> <%= number_to_currency stock.discount_amount %></span></td>
+                  <td><span class='pull-right'> <%= number_to_currency stock.freight_in_amount %></span></td>
+                  <td><span class='pull-right'> <%= number_to_currency stock.total_cost %></span></td>
+
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="box-footer">
+          <center><%=paginate @stocks %></center>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

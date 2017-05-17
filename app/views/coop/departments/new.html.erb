@@ -1,0 +1,4 @@
+<%=simple_form_for [@branch, @department], url: :coop_branch_departments do |f| %>
+  <%=f.input :name %>
+  <%= f.submit "Create Department", class: "btn btn-primary" %>
+<% end %>
