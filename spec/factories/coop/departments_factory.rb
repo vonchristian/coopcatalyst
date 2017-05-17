@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :department, class: "Coop::Department" do
-    cooperative nil
+    branch nil
     name "MyString"
   end
 end

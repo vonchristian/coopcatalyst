@@ -56,6 +56,7 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'pundit-matchers', '~> 1.2.3'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

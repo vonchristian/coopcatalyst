@@ -1,7 +1,7 @@
 module LoansSection
   class LoansController < ApplicationController
     def new
-      @member = Member.find(params[:member_id])
+      @member = Member.friendly.find(params[:member_id])
       @loan = @member.loans.build
     end
     def create
