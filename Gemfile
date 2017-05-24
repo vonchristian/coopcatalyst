@@ -14,7 +14,7 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jbuilder'
-gem 'simple_form', github: 'elsurudo/simple_form', branch: 'rails-5.1.0'
+gem 'simple_form'
 gem 'friendly_id'
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
